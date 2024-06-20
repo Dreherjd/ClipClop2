@@ -1,3 +1,6 @@
+<?php
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/clipclop2/common/common.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +13,7 @@
 <body>
     <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="index.php">Clip Clop</a>
+            <a class="navbar-brand" href="<?php echo BASE_URL ?>index.php">Clip Clop</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -21,13 +24,15 @@
                 </ul>
                 <ul class="navbar-nav d-flex">
                     <li class="nav-item">
-                        <a class="nav-link" href="">About</a>
+                        <a class="nav-link" href="#">About</a>
                     </li>
+                    <li class="nav-item"><a href="<?php echo BASE_URL ?>views/edit-post.php" class="nav-link">New Post</a></li>
                     <li class="nav-item">
-                        <a href="" class="nav-link">Log In</a>
+                        <a href="#" class="nav-link">Log In</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
+    <br/><br/><br/><br/>
     <div class="container">
