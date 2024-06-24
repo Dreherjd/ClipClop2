@@ -1,4 +1,5 @@
 <?php
+
 /**
  * gets a single post specified by the ID passed
  * @param String the id of the post you'd like to retreive
@@ -120,4 +121,25 @@ function addComment($id, array $commentData)
             }
         }
     }
+}
+
+/**
+ * deletes comment specified by passed id
+ * @param String the id of the comment you'd like to delete
+ */
+function deleteComment($id)
+{
+    global $pdo;
+    $sql = $pdo->prepare("
+        DELETE FROM
+            comments
+        WHERE
+            id = :id
+    ");
+    $result = $sql->execute(
+        array(
+            'id' => $id,
+        )
+    );
+    return $result !== false;
 }

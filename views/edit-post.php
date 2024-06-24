@@ -38,7 +38,7 @@ if (!empty($_POST)) {
         }
     }
     if (!$errors) {
-        redirect('views/view-post.php?id=' . $postId);
+        redirect(BASE_URL . 'views/view-post.php?id=' . $postId);
     }
 }
 ?>

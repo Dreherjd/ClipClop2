@@ -1,5 +1,4 @@
 <?php
-
 function isTrunc($text)
 {
     if (strlen($text) >= 19) {

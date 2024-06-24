@@ -38,4 +38,4 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
     <?php endforeach; ?>
 </div>
-<?php include 'includes/footer.php'; ?>
+<?php include(ROOT_PATH . "includes/footer.php"); ?>

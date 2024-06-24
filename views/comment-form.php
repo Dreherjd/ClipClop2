@@ -1,4 +1,5 @@
 <?php
+ob_start();
 require_once("../common/common.php");
 require_once("../common/dbConnect.php");
 require_once '../controllers/view-post.php';
@@ -13,10 +14,16 @@ if ($_POST) {
         );
         $errors = addComment($id, $commentData);
     } else if (isset($_POST['delete-comment'])) {
+        $keys = array_keys($_POST['delete-comment']);
+        $deleteCommentId = $keys[0];
+        if($deleteCommentId){
+            deleteComment($deleteCommentId);
+            redirect(BASE_URL . 'views/view-post.php?id=' . $id);
+        }
     } else if (isset($_POST['edit-comment'])) {
     }
     if (!$errors) {
-        redirect('views/view-post.php?id=' . $id);
+        redirect(BASE_URL . 'views/view-post.php?id=' . $id);
     }
 } else {
     if (isset($_GET['id'])) {
@@ -29,6 +36,7 @@ if ($_POST) {
         );
     }
 }
+ob_end_flush();
 ?>
 <?php foreach ($commentData as $comment) : ?>
     <div class="card border-secondary mb-3">
@@ -37,7 +45,7 @@ if ($_POST) {
                 <h4 class="card-title"><?php echo $comment['comment_author'] ?> said: </h4>
                 <p class="card-text"><?php echo $comment['comment_body'] ?></p>
                 <input type="submit" name="edit-comment" value="Edit" class="btn btn-primary btn-sm" />
-                <input type="submit" name="delete-comment" value="Delete" class="btn btn-warning btn-sm" />
+                <input type="submit" name="delete-comment[<?php echo $comment['id']?>]" value="Delete" class="btn btn-warning btn-sm" />
             </form>
         </div>
     </div>

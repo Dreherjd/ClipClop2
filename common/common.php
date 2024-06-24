@@ -19,15 +19,6 @@ function convertNewLinesToParagraphs($text){
     return '<p>' . str_replace("\n", "</p><p>", $escaped) . '</p>';
 }
 
-function redirect($script){
-    //get the domain-relative URL out of the folder structure
-    $relativeUrl = $_SERVER['PHP_SELF'];
-    $urlFolder = substr($relativeUrl, 0, strrpos($relativeUrl, '/') + 1);
-
-    //redirect to the full url
-    $host = $_SERVER['HTTP_HOST'];
-    $fullUrl = 'http://' . $host . $urlFolder . $script;
-    header('Location: ' . $fullUrl);
-    exit();
+function redirect($url){
+    echo '<script language="javascript">window.location.href ="'.$url.'"</script>';
 }
-?>

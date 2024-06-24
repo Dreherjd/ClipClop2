@@ -9,7 +9,7 @@ if (isset($_GET['id'])) {
     $record = getPostById($id);
 }
 if (!$record) {
-    redirect("index.php");
+    redirect( BASE_URL . "index.php");
 }
 
 if ($_POST) {
@@ -18,7 +18,7 @@ if ($_POST) {
         $deletePostId = $keys[0];
         if ($deletePostId) {
             deletePostById($deletePostId);
-            redirect('index.php');
+            redirect(BASE_URL . 'index.php');
         }
     }
 }
