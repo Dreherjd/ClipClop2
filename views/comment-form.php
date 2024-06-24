@@ -8,6 +8,7 @@ $commentData = null;
 if ($_POST) {
     if (isset($_POST['add-comment'])) {
         $commentData = array(
+            'comment_id' => $_POST['id'],
             'comment_author' => 'Justin',
             'comment_body' => $_POST['comment_body'],
             'comment_created' => getRightNowSqlDate(),
@@ -21,6 +22,12 @@ if ($_POST) {
             redirect(BASE_URL . 'views/view-post.php?id=' . $id);
         }
     } else if (isset($_POST['edit-comment'])) {
+        $keys = array_keys($_POST['edit-comment']);
+        $editCommentId = $keys[0];
+        if($editCommentId){
+            editComment($id, $newBody);
+            redirect(BASE_URL . 'views/view-post.php?id' . $id);
+        }
     }
     if (!$errors) {
         redirect(BASE_URL . 'views/view-post.php?id=' . $id);
@@ -30,6 +37,7 @@ if ($_POST) {
         $commentData = getCommentsById($_GET['id']);
     } else {
         $commentData = array(
+            'comment_id' => '',
             'comment_author' => '',
             'comment_body' => '',
             'comment_created' => '',
@@ -44,7 +52,7 @@ ob_end_flush();
             <form method="post">
                 <h4 class="card-title"><?php echo $comment['comment_author'] ?> said: </h4>
                 <p class="card-text"><?php echo $comment['comment_body'] ?></p>
-                <input type="submit" name="edit-comment" value="Edit" class="btn btn-primary btn-sm" />
+                <a class="btn btn-primary btn-sm" href="<?php echo BASE_URL?>views/edit-comment.php?id=<?php echo $comment['id']?>">Edit</a>
                 <input type="submit" name="delete-comment[<?php echo $comment['id']?>]" value="Delete" class="btn btn-warning btn-sm" />
             </form>
         </div>

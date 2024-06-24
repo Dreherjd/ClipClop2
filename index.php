@@ -31,7 +31,7 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <h4 class="card-title"><?php echo isTrunc($post['title']) ?></h4>
                     <p class="card-text"><?php echo substr($post['content'], 0, 85) . "..." ?></p>
                     <div class="card-footer text-muted">
-                        <a href="views/view-post.php?id=<?php echo $post['id']; ?>" style="float:right;" class="card-link text-body-info btn btn-info">Read More</a>
+                        <a href="views/view-post.php?id=<?php echo $post['id']; ?>" style="float:right;" class="card-link text-body-info btn btn-sm btn-info">Read More</a>
                     </div>
                 </div>
             </div>

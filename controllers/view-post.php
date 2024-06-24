@@ -143,3 +143,23 @@ function deleteComment($id)
     );
     return $result !== false;
 }
+
+function editComment($comment_id, $new_body)
+{
+    global $pdo;
+    $sql = $pdo->prepare("
+        UDPDATE
+            comments
+        SET
+            comment_body = :comment_body
+        WHERE
+            id = :id
+    ");
+    $result = $sql->execute(
+        array(
+            'comment_body' => $new_body,
+            'id' => $comment_id,
+        )
+    );
+    return $result !== false;
+}
