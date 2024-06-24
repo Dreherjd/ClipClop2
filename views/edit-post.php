@@ -38,14 +38,10 @@ if (!empty($_POST)) {
         }
     }
     if (!$errors) {
-        header('Location: ' . BASE_URL . 'views/view-post.php?id=' . $postId);
+        redirect('views/view-post.php?id=' . $postId);
     }
 }
-
-
-
 ?>
-
 <?php include '../includes/header.php'; ?>
 <style>
     <?php include '../assets/bootstrap.css'; ?>

@@ -21,7 +21,6 @@ function addPost($title, $content, $author)
     if ($result === false) {
         throw new Exception("Error in inserting post");
     }
-    print_r($pdo->lastInsertId());
     return $pdo->lastInsertId();
 }
 
@@ -44,17 +43,18 @@ function editPost($title, $content, $postId)
             'id' => $postId,
         )
     );
-    if($result === false){
+    if ($result === false) {
         throw new Exception("Could not execute edit query");
     }
     return $postId;
 }
 
-function getPostById($postId)
-{
-    global $pdo;
-    if ($postId) {
-        $sql = $pdo->prepare("
+if (!function_exists('getPostById')) {
+    function getPostById($postId)
+    {
+        global $pdo;
+        if ($postId) {
+            $sql = $pdo->prepare("
                 SELECT
                     id,title,content,created,author
                 FROM
@@ -62,18 +62,19 @@ function getPostById($postId)
                 WHERE
                     id = :id
             ");
-        $result = $sql->execute(
-            array(
-                'id' => $postId
-            )
-        );
-        if ($result) {
-            //use fetch instead of fetchAll because fetchAll returns
-            //an array of arrays, where fetch returns just the one array
-            $row = $sql->fetch(PDO::FETCH_ASSOC);
-            return $row;
-        } else {
-            return null;
+            $result = $sql->execute(
+                array(
+                    'id' => $postId
+                )
+            );
+            if ($result) {
+                //use fetch instead of fetchAll because fetchAll returns
+                //an array of arrays, where fetch returns just the one array
+                $row = $sql->fetch(PDO::FETCH_ASSOC);
+                return $row;
+            } else {
+                return null;
+            }
         }
     }
 }
