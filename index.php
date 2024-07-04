@@ -1,7 +1,7 @@
 <?php
 require_once("common/common.php");
 require_once("common/dbConnect.php");
-include 'controllers/index.php';
+require('controllers/index.php');
 
 global $pdo;
 $stmt = $pdo->query("
@@ -18,7 +18,7 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
 ?>
-<?php include(ROOT_PATH . "includes/header.php"); ?>
+<?php include ("includes/header.php"); ?>
 <style>
     <?php include 'assets/bootstrap.css'; ?>
 </style>
@@ -38,4 +38,4 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
     <?php endforeach; ?>
 </div>
-<?php include(ROOT_PATH . "includes/footer.php"); ?>
+<?php include("includes/footer.php"); ?>

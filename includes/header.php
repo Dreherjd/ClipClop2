@@ -1,5 +1,6 @@
 <?php
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/clipclop2/common/common.php';
+    // require_once ($_SERVER['DOCUMENT_ROOT'] . '/clipclop2/common/common.php');
+    require_once(realpath(dirname(__FILE__) . '../common/common.php'));
 ?>
 <!DOCTYPE html>
 <html lang="en">
